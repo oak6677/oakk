@@ -1,0 +1,33 @@
+#splash{
+  --sp-bg:radial-gradient(120% 60% at 0% 0%,#b9cbfb 0%,transparent 60%),radial-gradient(90% 55% at 100% 45%,#b4eedb 0%,transparent 62%),radial-gradient(100% 50% at 20% 100%,#c3d3fa 0%,transparent 60%),linear-gradient(170deg,#d3def9,#e4ebfb 50%,#cdf1e4);
+  --sp-track-blue:#4d80f759; --sp-track-green:#57cea659;
+  --sp-disc:radial-gradient(circle,#ffffffe6,#ffffff99); --sp-disc-edge:inset 0 2px 8px #fff,0 0 0 1px #ffffffaa;
+  --sp-tower:#8e9ad0; --sp-cross:#e9eefc; --sp-wave:#4d80f7; --sp-ink:#0f172a; --sp-k:#4d80f7;
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--sp-bg);transition:opacity .5s ease,visibility .5s;touch-action:manipulation}
+#splash.dark{
+  --sp-bg:radial-gradient(120% 60% at 0% 0%,#24418f 0%,transparent 60%),radial-gradient(90% 55% at 100% 45%,#0f5a47 0%,transparent 62%),radial-gradient(100% 50% at 20% 100%,#1c2c66 0%,transparent 60%),linear-gradient(170deg,#0e1530,#111a3a 50%,#0a2a28);
+  --sp-disc:radial-gradient(circle,#1d2850e6,#141c3ecc); --sp-disc-edge:inset 0 2px 8px #ffffff1a,0 0 0 1px #ffffff1a;
+  --sp-tower:#7aa2fb; --sp-cross:#141c3e; --sp-wave:#7aa2fb; --sp-ink:#e8eefc; --sp-k:#7aa2fb}
+#splash.out{opacity:0;visibility:hidden;pointer-events:none}
+#splash .sp-lockup{display:flex;flex-direction:column;align-items:center;gap:14px}
+#splash .sp-mark{position:relative;width:min(52vw,200px);aspect-ratio:1}
+#splash .sp-disc{position:absolute;inset:14%;border-radius:50%;background:var(--sp-disc);box-shadow:var(--sp-disc-edge);animation:sp-fade .6s ease-out .5s both}
+#splash .sp-mark svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#splash .sp-ring{fill:none;stroke-width:12}
+#splash .sp-tb{stroke:var(--sp-track-blue)}
+#splash .sp-tg{stroke:var(--sp-track-green)}
+#splash .sp-arc{stroke:#57cea6;stroke-linecap:round;stroke-dasharray:68 32;animation:sp-draw 1.2s cubic-bezier(.22,.9,.3,1) both}
+#splash .sp-blue{stroke:#4d80f7;stroke-linecap:round;stroke-dasharray:26 74;stroke-dashoffset:-70;animation:sp-draw 1.2s cubic-bezier(.22,.9,.3,1) .25s both}
+#splash .sp-tower{transform-origin:50% 100%;transform-box:fill-box;animation:sp-pop .5s cubic-bezier(.22,.9,.3,1) .9s both}
+#splash .sp-body{fill:var(--sp-tower)}
+#splash .sp-cross{fill:none;stroke:var(--sp-cross);stroke-width:1.6;stroke-linecap:round}
+#splash .sp-wave{fill:none;stroke:var(--sp-wave);stroke-width:2.4;stroke-linecap:round;opacity:.55;animation:sp-fade .4s ease-out 1.3s both}
+#splash .sp-word{font-family:'Sora','Noto Sans Myanmar',system-ui,sans-serif;font-weight:800;font-size:32px;letter-spacing:-.3px;color:var(--sp-ink);animation:sp-rise .5s cubic-bezier(.22,.9,.3,1) 1.5s both}
+#splash .sp-word b{color:var(--sp-k)}
+@keyframes sp-draw{from{stroke-dasharray:0 100}}
+@keyframes sp-pop{from{opacity:0;transform:scale(.6)}}
+@keyframes sp-fade{from{opacity:0}}
+@keyframes sp-rise{from{opacity:0;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){
+  #splash *{animation-duration:.01s!important;animation-delay:0s!important}
+}

@@ -1,0 +1,86 @@
+/* day / night theme switch: sky wipe, sun-moon knob, stars, lit house */
+.card.dn-card{--dn-t:.7s;--dn-e:cubic-bezier(.4,0,.2,1);position:relative;height:236px;padding:0;overflow:hidden;isolation:isolate;
+  background:#7cc4f5;box-shadow:0 10px 30px #1e3a8a26,0 0 0 1px #ffffff55;backdrop-filter:none;-webkit-backdrop-filter:none}
+.card.dn-card::after{display:none}
+.dn-sky{position:absolute;inset:0;transition:opacity var(--dn-t) var(--dn-e);z-index:-3}
+.dn-sky.day{background:linear-gradient(180deg,#6ab9f3,#b9e2fb 70%,#d8f0fd)}
+.dn-sky.night{background:linear-gradient(180deg,#070d26,#14214f 65%,#1d2f63);opacity:0}
+html[data-theme=dark] .dn-sky.night{opacity:1}
+html[data-theme=dark] .dn-sky.day{opacity:0}
+
+.dn-stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:0;transform:scale(0);z-index:-2;
+  transition:opacity .4s calc(.25s + var(--d)),transform .5s calc(.25s + var(--d)) cubic-bezier(.3,1.4,.5,1)}
+.dn-stars i:nth-child(3n){width:2px;height:2px}
+html[data-theme=dark] .dn-stars i{opacity:.9;transform:scale(1)}
+.dn-clouds i{position:absolute;width:calc(64px * var(--s));height:calc(20px * var(--s));border-radius:20px;background:#fff;opacity:.95;z-index:-2;
+  box-shadow:calc(14px * var(--s)) calc(-8px * var(--s)) 0 calc(2px * var(--s)) #fff;
+  transition:transform var(--dn-t) var(--dn-e),opacity .5s}
+html[data-theme=dark] .dn-clouds i{transform:translateX(-90px);opacity:0}
+html[data-theme=dark] .dn-clouds i:nth-child(n+2){transform:translateX(90px)}
+
+.dn-land{position:absolute;left:0;right:0;bottom:0;width:100%;height:50%;z-index:-1}
+.dn-land .hill-b{fill:#7cc77a;transition:fill var(--dn-t) var(--dn-e)}
+.dn-land .hill-f{fill:#4fae5c;transition:fill var(--dn-t) var(--dn-e)}
+.dn-land .tree path{fill:#2f8f4e;transition:fill var(--dn-t) var(--dn-e)}
+.dn-land .tree rect{fill:#7a5a3a}
+.dn-land .hb{fill:#f6f2e8;transition:fill var(--dn-t) var(--dn-e)}
+.dn-land .hr{fill:#e8553d;transition:fill var(--dn-t) var(--dn-e)}
+.dn-land .hd{fill:#9cc9f0}
+.dn-land .hw{fill:#9cc9f0;transition:fill .5s .35s,filter .5s .35s}
+html[data-theme=dark] .dn-land .hill-b{fill:#17403f}
+html[data-theme=dark] .dn-land .hill-f{fill:#0f2f33}
+html[data-theme=dark] .dn-land .tree path{fill:#0b2a2b}
+html[data-theme=dark] .dn-land .hb{fill:#232c52}
+html[data-theme=dark] .dn-land .hr{fill:#3a2f52}
+html[data-theme=dark] .dn-land .hd{fill:#161d3e}
+html[data-theme=dark] .dn-land .hw{fill:#ffc860;filter:drop-shadow(0 0 5px #ffc860)}
+
+.daynight{position:absolute;left:50%;top:26px;width:148px;height:68px;margin-left:-74px;border-radius:34px;padding:0;
+  -webkit-tap-highlight-color:transparent;transition:transform .2s}
+.daynight:active{transform:scale(.97)}
+.daynight:focus-visible,.dn-auto:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.dn-track{position:absolute;inset:0;border-radius:34px;overflow:hidden;background:#a9dbfb;
+  box-shadow:inset 0 3px 8px #1e5fa033,0 0 0 3px #ffffff88;transition:background var(--dn-t) var(--dn-e),box-shadow var(--dn-t) var(--dn-e)}
+html[data-theme=dark] .dn-track{background:#1b2760;box-shadow:inset 0 3px 8px #0008,0 0 0 3px #7f93e033}
+.dn-track .tc{position:absolute;height:12px;border-radius:12px;background:#fff;opacity:.9;transition:transform var(--dn-t) var(--dn-e),opacity .5s}
+.dn-track .c1{width:34px;right:12px;top:16px}.dn-track .c2{width:26px;right:34px;top:38px}
+html[data-theme=dark] .dn-track .tc{transform:translateX(60px);opacity:0}
+.dn-track .ts{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:0;transition:opacity .4s .3s}
+.dn-track .s1{left:20px;top:16px}.dn-track .s2{left:34px;top:40px}.dn-track .s3{left:56px;top:24px}
+html[data-theme=dark] .dn-track .ts{opacity:.9}
+.dn-knob{position:absolute;left:7px;top:7px;width:54px;height:54px;border-radius:50%;
+  transition:transform var(--dn-t) cubic-bezier(.3,1.25,.5,1)}
+html[data-theme=dark] .dn-knob{transform:translateX(80px) rotate(-35deg)}
+.dn-knob .sun,.dn-knob .moon{position:absolute;inset:0;border-radius:50%;transition:opacity .45s,transform var(--dn-t) var(--dn-e)}
+.dn-knob .sun{background:radial-gradient(circle at 35% 30%,#ffe27a,#ffb81f 70%);
+  box-shadow:0 0 0 6px #ffd54d55,0 0 0 13px #ffd54d33,0 4px 14px #f5a30066}
+.dn-knob .moon{background:radial-gradient(circle at 35% 30%,#f4f6ff,#c8cee8 75%);opacity:0;transform:scale(.6);
+  box-shadow:0 0 0 6px #ffffff1f,0 0 0 13px #ffffff10,0 4px 14px #0006}
+.dn-knob .moon b{position:absolute;border-radius:50%;background:#a7aed0}
+.dn-knob .moon b:nth-child(1){width:14px;height:14px;left:28px;top:9px}
+.dn-knob .moon b:nth-child(2){width:9px;height:9px;left:12px;top:26px}
+.dn-knob .moon b:nth-child(3){width:7px;height:7px;left:30px;top:34px}
+html[data-theme=dark] .dn-knob .sun{opacity:0;transform:scale(.6)}
+html[data-theme=dark] .dn-knob .moon{opacity:1;transform:scale(1)}
+
+.dn-label{position:absolute;left:0;right:0;top:108px;text-align:center;font-weight:800;letter-spacing:.18em;font-size:14px;height:20px;color:#1f5f9e}
+.dn-label span{position:absolute;left:0;right:0;transition:opacity .4s,transform .5s var(--dn-e)}
+.dn-label .l-night{opacity:0;transform:translateY(8px);color:#dfe6ff}
+html[data-theme=dark] .dn-label .l-day{opacity:0;transform:translateY(-8px)}
+html[data-theme=dark] .dn-label .l-night{opacity:1;transform:none}
+
+.dn-auto{position:absolute;right:10px;top:10px;min-height:44px;padding:0 12px;border-radius:22px;font-size:12px;font-weight:700;
+  color:#1f5f9e;background:#ffffffa6;transition:background .25s,color .25s}
+.dn-auto:hover{background:#ffffffd9}
+.dn-auto[aria-pressed=true]{background:#1f5f9e;color:#fff}
+html[data-theme=dark] .dn-auto{color:#cfd9ff;background:#ffffff1f}
+html[data-theme=dark] .dn-auto[aria-pressed=true]{background:#7aa2fb;color:#0b1536}
+
+.theme-wipe{position:fixed;border-radius:50%;z-index:9999;pointer-events:none;transform-origin:center}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-old(root){z-index:1}
+::view-transition-new(root){z-index:2}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-sky,.dn-stars i,.dn-clouds i,.dn-land *,.dn-track,.dn-track *,.dn-knob,.dn-knob *,.dn-label span{transition:none!important}
+}

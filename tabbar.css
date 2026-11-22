@@ -1,0 +1,31 @@
+/* pill tab bar: active tab expands into a blue pill with its label */
+.tabs{--tb-blue:#2563eb;--tb-ink:#4b5563;
+  left:14px;right:14px;padding:10px;gap:4px;align-items:center;border-radius:24px;
+  background:#f6f8fd;backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:0 12px 30px #1e3a8a26,0 2px 6px #1e3a8a14}
+.tabs::before{display:none}
+.tabs .dot{display:none}
+.tab{flex:1 1 0;flex-direction:row;justify-content:center;gap:0;height:46px;min-height:46px;padding:0;border-radius:16px;
+  font-size:13px;font-weight:600;color:var(--tb-ink);white-space:nowrap;overflow:visible;
+  transition:flex-grow .42s cubic-bezier(.3,1.25,.5,1),background-color .25s,color .25s,box-shadow .3s}
+.tab .ic{width:22px;height:22px;flex:none;transition:transform .3s var(--ease)}
+.tab span{display:block;max-width:0;opacity:0;overflow:hidden;margin-left:0;
+  transition:max-width .42s var(--ease),opacity .25s,margin-left .3s}
+.tab:hover:not(.on){background:#e8edfa}
+.tab:focus-visible{outline:2px solid var(--tb-blue);outline-offset:2px}
+.tab.on{flex-grow:2.6;color:#fff;background:var(--tb-blue);box-shadow:0 8px 18px #2563eb59}
+.tab.on .ic{transform:none}
+.tab.on span{max-width:90px;opacity:1;margin-left:8px;transition-delay:0s,.12s,0s}
+.tab:active .ic{transform:scale(.88)}
+.tab.on:active .ic{transform:scale(.92)}
+.badge{top:2px;left:auto;right:calc(50% - 20px);box-shadow:0 0 0 2px #f6f8fd}
+.tab.on .badge{right:6px;box-shadow:0 0 0 2px var(--tb-blue)}
+
+html[data-theme=dark] .tabs{background:#1a2347;box-shadow:0 14px 34px #0009,0 0 0 1px #ffffff14}
+html[data-theme=dark] .tab{color:#9aa8d0}
+html[data-theme=dark] .tab:hover:not(.on){background:#ffffff14}
+html[data-theme=dark] .tab.on{color:#fff}
+html[data-theme=dark] .badge{box-shadow:0 0 0 2px #1a2347}
+html[data-theme=dark] .tab.on .badge{box-shadow:0 0 0 2px var(--tb-blue)}
+
+@media (prefers-reduced-motion:reduce){.tab,.tab span,.tab .ic{transition:none}}
