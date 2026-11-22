@@ -861,6 +861,7 @@
     if (!silent) toast(t('trial_added'));
   }
   updateTrial(true);
+  setInterval(() => updateTrial(true), 6 * 60 * 60 * 1000);
 
   /* ---------- subscription: remote-controlled visibility (trial.json) ---------- */
   let subAllowed = true;
