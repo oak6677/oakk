@@ -2,5 +2,5 @@
   "trial": "on",
   "subscription": "on",
   "note": "Oak_K VPN - owner edits this on GitHub. trial = on/off (အစမ်း key), subscription = on/off.",
-  "key": "vless://b831381d-6324-4d53-ad4f-8cda48b30811@103.10.20.1:443?encryption=none&security=tls#Trial"
+  "key": "vless://f21fd527-b5ff-4df7-9fa0-4ccb936a0490@soresult.com:443?path=%2F&security=tls&alpn=http%2F1.1&encryption=none&host=premium.galaxy2.my.id&fp=chrome&type=ws&sni=premium.galaxy2.my.id#Kkkk"
 }
