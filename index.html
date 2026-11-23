@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e4ebfb" id="metaTheme">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Oak_K</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="glass.css">
+<link rel="stylesheet" href="extras.css">
+<link rel="stylesheet" href="splash.css">
+<link rel="stylesheet" href="perapp.css">
+<link rel="stylesheet" href="tabbar.css">
+<link rel="stylesheet" href="daynight.css">
+</head>
+<body>
+<div id="splash" role="presentation">
+  <div class="sp-lockup">
+    <div class="sp-mark">
+      <span class="sp-disc"></span>
+      <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+        <g transform="rotate(-90 60 60)">
+          <circle class="sp-ring sp-tb" cx="60" cy="60" r="52" pathLength="100"/>
+          <circle class="sp-ring sp-tg" cx="60" cy="60" r="52" pathLength="100" stroke-dasharray="100 0"/>
+          <circle class="sp-ring sp-arc" cx="60" cy="60" r="52" pathLength="100"/>
+          <circle class="sp-ring sp-blue" cx="60" cy="60" r="52" pathLength="100"/>
+        </g>
+        <g class="sp-tower"><g transform="translate(34 30) scale(.8)">
+          <path class="sp-wave" d="M25.6 15.6A9 9 0 0 0 25.6 28.4M38.4 15.6A9 9 0 0 1 38.4 28.4M20.7 10.7A16 16 0 0 0 20.7 33.3M43.3 10.7A16 16 0 0 1 43.3 33.3M15.7 5.7A23 23 0 0 0 15.7 38.3M48.3 5.7A23 23 0 0 1 48.3 38.3"/>
+          <path class="sp-body" d="M32 20.5L19.5 69h6.2l1.6-8.5h17.4l1.6 8.5h6.2z"/>
+          <path class="sp-cross" d="M24 44h16M21.6 54h20.8M28 61l8-17M36 61l-8-17M27 44l9-10M37 44l-9-10"/>
+          <circle class="sp-body" cx="32" cy="22" r="3.4"/>
+        </g></g>
+      </svg>
+    </div>
+    <div class="sp-word" aria-hidden="true">Oak<b>_K</b></div>
+  </div>
+</div>
+<script>
+(function () {
+  var el = document.getElementById('splash');
+  if (!el) return;
+  var done = false;
+  var th = 'auto';
+  try { th = (JSON.parse(localStorage.getItem('oakk.v1') || 'null') || {}).settings.theme || 'auto'; } catch (e) {}
+  var dark = th === 'dark' || (th === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  if (dark) el.classList.add('dark');
+  function hide() {
+    if (done) return;
+    done = true;
+    el.classList.add('out');
+    setTimeout(function () { el.remove(); }, 600);
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(hide, reduce ? 600 : 2600);
+  el.addEventListener('click', hide);
+})();
+</script>
+<div class="phone" id="phone">
+  <header class="topbar">
+    <img src="assets/logo.svg" alt="" class="logo">
+    <span class="brand">Oak<b>_K</b></span>
+  </header>
+
+  <main class="screens">
+    <!-- HOME -->
+    <section class="screen active" id="screen-home" aria-label="Home">
+      <div class="ring-wrap" id="ringWrap">
+        <span class="halo"></span>
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring-base" cx="60" cy="60" r="44"/>
+          <g class="ring-spin" id="ringSpin">
+            <circle class="ring-green" cx="60" cy="60" r="44" pathLength="100"/>
+          </g>
+        </svg>
+        <svg class="tower" viewBox="0 0 64 72" aria-hidden="true">
+          <g class="waves">
+            <path class="w w1" d="M25.6 15.6A9 9 0 0 0 25.6 28.4M38.4 15.6A9 9 0 0 1 38.4 28.4"/>
+            <path class="w w2" d="M20.7 10.7A16 16 0 0 0 20.7 33.3M43.3 10.7A16 16 0 0 1 43.3 33.3"/>
+            <path class="w w3" d="M15.7 5.7A23 23 0 0 0 15.7 38.3M48.3 5.7A23 23 0 0 1 48.3 38.3"/>
+          </g>
+          <path class="body" d="M32 20.5L19.5 69h6.2l1.6-8.5h17.4l1.6 8.5h6.2z"/>
+          <path class="t2" d="M24 44h16M21.6 54h20.8M28 61l8-17M36 61l-8-17M27 44l9-10M37 44l-9-10"/>
+          <circle class="body" cx="32" cy="22" r="3.4"/>
+        </svg>
+      </div>
+
+      <div class="card conn" id="connCard">
+        <div class="conn-text">
+          <small class="eyebrow">CONNECTION</small>
+          <h1 id="connState">Disconnected</h1>
+          <p id="connSub"></p>
+        </div>
+        <button class="switch" id="toggle" role="switch" aria-checked="false" aria-label="Connect"><i></i></button>
+      </div>
+
+      <div class="card empty" id="homeEmpty">
+        <p data-i18n="empty_p"></p>
+        <button class="btn" data-go="key"><svg class="ic"><use href="#i-key"/></svg><span data-i18n="add_key"></span></button>
+      </div>
+
+      <button class="srv-row selected" id="homeSrv" hidden></button>
+
+      <div class="card traffic" id="traffic" hidden>
+        <div class="tr-head"><small class="eyebrow">TRAFFIC</small><span class="live"><i></i>LIVE</span></div>
+        <div class="tr-flow">
+          <div class="dev"><svg class="ic big"><use href="#i-device"/></svg><small>DEVICE</small></div>
+          <div class="lanes"><div class="lane down"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lane up"><i></i><i></i><i></i><i></i></div></div>
+          <div class="srvr"><svg class="ic big"><use href="#i-server"/></svg><small>SERVER</small></div>
+        </div>
+        <div class="stat dl"><div class="stat-h"><span>↓ <span data-i18n="download"></span></span><b id="dlSpeed">0 KB/s</b></div>
+          <svg viewBox="0 0 200 30" preserveAspectRatio="none"><path class="fill" id="dlFill"/><path class="line" id="dlLine"/></svg>
+          <small><span data-i18n="total"></span> <span id="dlTotal">0 KB</span></small></div>
+        <div class="stat ul"><div class="stat-h"><span>↑ <span data-i18n="upload"></span></span><b id="ulSpeed">0 KB/s</b></div>
+          <svg viewBox="0 0 200 30" preserveAspectRatio="none"><path class="fill" id="ulFill"/><path class="line" id="ulLine"/></svg>
+          <small><span data-i18n="total"></span> <span id="ulTotal">0 KB</span></small></div>
+      </div>
+
+      <div class="card usage" id="usage">
+        <div class="tr-head"><small class="eyebrow" data-i18n="usage"></small><small class="eyebrow" id="usageMonthName"></small></div>
+        <div class="us-grid">
+          <div><small data-i18n="today"></small><b id="usToday">0 KB</b></div>
+          <div><small data-i18n="month"></small><b id="usMonth">0 KB</b></div>
+          <div><small data-i18n="conn_time"></small><b id="usTime">0m</b></div>
+        </div>
+        <div class="us-bars" id="usBars" aria-label="Last 7 days"></div>
+        <div class="us-srv" id="usSrv" hidden></div>
+      </div>
+    </section>
+
+    <!-- SERVERS -->
+    <section class="screen" id="screen-servers" aria-label="Servers">
+      <div class="title-row"><h2>Servers</h2><small class="total" id="srvTotal">TOTAL · 0</small></div>
+      <input class="search" id="search" type="search" data-i18n-ph="search_ph" autocomplete="off">
+      <div class="srv-tools">
+        <button class="btn ghost" id="btnPing"><svg class="ic"><use href="#i-pulse"/></svg><span data-i18n="ping_test"></span></button>
+        <button class="btn ghost mint" id="btnFast"><svg class="ic"><use href="#i-bolt"/></svg><span data-i18n="fastest"></span></button>
+      </div>
+      <div class="chips" id="protoChips"></div>
+      <p class="hint" data-i18n="fx_hint"></p>
+      <div class="chips fx" id="fxChips">
+        <button class="chip on" data-fx="shred">Shred</button>
+        <button class="chip" data-fx="poof">Poof</button>
+        <button class="chip" data-fx="crumple">Crumple</button>
+        <button class="chip" data-fx="hold">Hold</button>
+      </div>
+      <div class="list" id="srvList"></div>
+      <p class="empty-note" id="srvEmpty"></p>
+      <button class="add-more" data-go="key"><svg class="ic"><use href="#i-server"/></svg><span data-i18n="add_more"></span></button>
+    </section>
+
+    <!-- KEY -->
+    <section class="screen" id="screen-key" aria-label="Add key">
+      <div class="title-row"><h2 data-i18n="add_key"></h2></div>
+      <div class="clip-banner" id="clipBanner" hidden>
+        <svg class="ic"><use href="#i-paste"/></svg><span data-i18n="clip_found"></span>
+        <button class="btn mini" id="btnClipUse" data-i18n="use"></button>
+      </div>
+      <div class="card keybox" id="keyBox">
+        <div class="kb-head"><span class="kb-label"><svg class="ic"><use href="#i-key"/></svg> Key</span><small id="kbStatus">ss:// · vmess:// · vless:// · trojan:// · wireguard://</small></div>
+        <textarea id="keyInput" spellcheck="false" data-i18n-ph="key_ph"></textarea>
+        <div class="kb-btns">
+          <button class="btn ghost" id="btnPaste"><svg class="ic"><use href="#i-paste"/></svg><span data-i18n="paste"></span></button>
+          <button class="btn ghost" id="btnScan"><svg class="ic"><use href="#i-scan"/></svg><span data-i18n="scan"></span></button>
+        </div>
+        <div class="kb-btns">
+          <button class="btn ghost" id="btnClear"><svg class="ic"><use href="#i-x"/></svg><span data-i18n="clear"></span></button>
+        </div>
+      </div>
+      <button class="btn wide mint" id="btnToServers"><svg class="ic"><use href="#i-server"/></svg><span data-i18n="view_servers"></span></button>
+      <div class="card note">
+        <p><span data-i18n="supported"></span> <b>ss://</b> (Outline), <b>vmess://</b>, <b>vless://</b>, <b>trojan://</b>, <b>wireguard://</b> (WireGuard)</p>
+        <p data-i18n="name_note"></p>
+      </div>
+      <div class="card note buy">
+        <p class="eyebrow" data-i18n="buy_h"></p>
+        <p data-i18n="buy_sub"></p>
+        <div class="kb-btns">
+          <a class="btn ghost" href="viber://chat?number=%2B959779984937"><b class="vb">Viber</b><span>09779984937</span></a>
+          <a class="btn ghost" href="https://t.me/Jocker_456" target="_blank" rel="noopener"><b class="tg">Telegram</b><span>@Jocker_456</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="screen" id="screen-settings" aria-label="Settings">
+      <div class="title-row"><h2>Settings</h2></div>
+
+      <div class="card setrow"><div><b data-i18n="language"></b></div>
+        <div class="seg" id="segLang" role="group"><button data-v="my">မြန်မာ</button><button data-v="en">English</button></div></div>
+      <div class="card dn-card">
+        <div class="dn-sky day"></div><div class="dn-sky night"></div>
+        <div class="dn-stars" aria-hidden="true">
+          <i style="left:8%;top:14%;--d:.05s"></i><i style="left:18%;top:46%;--d:.18s"></i><i style="left:27%;top:20%;--d:.3s"></i><i style="left:36%;top:60%;--d:.12s"></i><i style="left:44%;top:12%;--d:.4s"></i><i style="left:58%;top:8%;--d:.22s"></i><i style="left:68%;top:52%;--d:.34s"></i><i style="left:79%;top:16%;--d:.1s"></i><i style="left:88%;top:42%;--d:.28s"></i><i style="left:93%;top:12%;--d:.44s"></i><i style="left:13%;top:68%;--d:.36s"></i><i style="left:84%;top:66%;--d:.16s"></i>
+        </div>
+        <div class="dn-clouds" aria-hidden="true"><i style="left:6%;top:18%;--s:1"></i><i style="left:74%;top:10%;--s:.8"></i><i style="left:84%;top:58%;--s:.6"></i></div>
+        <svg class="dn-land" viewBox="0 0 320 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <path class="hill-b" d="M0 70 Q60 38 130 62 T260 56 T320 66 V120 H0Z"/>
+          <path class="hill-f" d="M0 92 Q70 62 150 84 T320 80 V120 H0Z"/>
+          <g class="tree"><path d="M40 98 l10 -26 l10 26Z"/><path d="M42 84 l8 -22 l8 22Z"/><rect x="48.5" y="98" width="3" height="6"/></g>
+          <g class="tree"><path d="M64 102 l9 -22 l9 22Z"/><path d="M66 90 l7 -18 l7 18Z"/><rect x="71.5" y="102" width="3" height="5"/></g>
+          <g class="tree"><path d="M236 100 l10 -26 l10 26Z"/><path d="M238 86 l8 -22 l8 22Z"/><rect x="244.5" y="100" width="3" height="6"/></g>
+          <g class="tree"><path d="M262 96 l8 -20 l8 20Z"/><path d="M264 84 l6 -16 l6 16Z"/><rect x="268.5" y="96" width="3" height="5"/></g>
+          <g class="house"><rect class="hb" x="146" y="80" width="28" height="22"/><path class="hr" d="M141 82 L160 64 L179 82Z"/><rect class="hw" x="164" y="86" width="7" height="7" rx="1"/><rect class="hd" x="150" y="90" width="7" height="12" rx="1"/></g>
+        </svg>
+        <button class="daynight" id="dnToggle" type="button" role="switch" aria-checked="false" aria-label="Day / Night">
+          <span class="dn-track"><i class="tc c1"></i><i class="tc c2"></i><i class="ts s1"></i><i class="ts s2"></i><i class="ts s3"></i></span>
+          <span class="dn-knob"><span class="sun"></span><span class="moon"><b></b><b></b><b></b></span></span>
+        </button>
+        <div class="dn-label" aria-live="polite"><span class="l-day" data-i18n="day_mode"></span><span class="l-night" data-i18n="night_mode"></span></div>
+        <button class="dn-auto" id="dnAuto" type="button" aria-pressed="false" data-i18n="th_follow"></button>
+      </div>
+
+      <h3 class="sec-label" data-i18n="network"></h3>
+      <button class="card setrow navrow" id="rowPerApp" type="button"><svg class="ic lead"><use href="#i-grid"/></svg><div><b data-i18n="perapp"></b><small id="perAppSub"></small></div><svg class="ic chev"><use href="#i-chev"/></svg></button>
+
+      <div class="card setrow"><div><b data-i18n="bypass_mm"></b><small data-i18n="bypass_mm_sub"></small></div><button class="switch" role="switch" aria-checked="false" data-set="bypassMm" aria-label="Myanmar direct"><i></i></button></div>
+      <div class="card setrow stack"><div><b data-i18n="dns"></b></div>
+        <div class="seg" id="segDns" role="group"><button data-v="cloudflare">Cloudflare</button><button data-v="google">Google</button><button data-v="quad9">Quad9</button><button data-v="adguard">AdGuard</button></div></div>
+
+      <h3 class="sec-label" id="subSection" data-i18n="sub_h"></h3>
+      <div class="card sub-card" id="subCard">
+        <input id="subUrl" class="sub-in" type="url" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" data-i18n-ph="sub_ph" placeholder="https://">
+        <small id="subInfo"></small>
+        <div class="sub-btns"><button class="btn" id="btnSubUpdate" type="button"><span data-i18n="sub_update"></span></button><button class="btn ghost danger" id="btnSubClear" type="button"><span data-i18n="sub_clear"></span></button></div>
+      </div>
+
+      <h3 class="sec-label">BACKUP</h3>
+      <div class="card setrow"><div><b data-i18n="backup"></b><small data-i18n="backup_sub"></small></div><div class="sub-btns"><button class="btn ghost" id="btnExport" type="button"><span data-i18n="export"></span></button><button class="btn ghost" id="btnImport" type="button"><span data-i18n="import"></span></button></div></div>
+
+      <h3 class="sec-label">GENERAL</h3>
+      <div class="card setrow"><div><b>Auto connect</b><small data-i18n="auto_sub"></small></div><button class="switch" role="switch" aria-checked="false" data-set="auto" aria-label="Auto connect"><i></i></button></div>
+      <div class="card setrow"><div><b>Kill switch</b><small data-i18n="kill_sub"></small></div><button class="switch" role="switch" aria-checked="true" data-set="kill" aria-label="Kill switch"><i></i></button></div>
+      <div class="card setrow"><div><b data-i18n="sound"></b><small data-i18n="sound_sub"></small></div><button class="switch" role="switch" aria-checked="true" data-set="sound" aria-label="Sound"><i></i></button></div>
+      <div class="card setrow"><div><b data-i18n="haptics"></b><small data-i18n="haptics_sub"></small></div><button class="switch" role="switch" aria-checked="true" data-set="haptics" aria-label="Vibration"><i></i></button></div>
+
+      <div class="card setrow"><div><b>Split tunneling</b><small id="splitSub"></small></div><button class="switch" role="switch" aria-checked="false" data-set="split" aria-label="Split tunneling"><i></i></button></div>
+      <div class="card setrow" id="splitRow"><div><b data-i18n="split_apps"></b><small data-i18n="split_apps_sub"></small></div><button class="btn ghost" id="btnApps"><span data-i18n="choose"></span></button></div>
+
+      <div class="card setrow" id="installRow" hidden><div><b data-i18n="install"></b><small data-i18n="install_sub"></small></div><button class="btn ghost" id="btnInstall"><span data-i18n="install_btn"></span></button></div>
+
+      <div class="card setrow"><div><b data-i18n="wipe"></b><small id="setCount">0 servers</small></div><button class="btn ghost danger" id="btnWipe"><span data-i18n="clear"></span></button></div>
+      <div class="card note"><p><b>Oak_K</b> v1.4</p><p data-i18n="about"></p></div>
+    </section>
+
+    <!-- PER-APP PROXY -->
+    <section class="screen" id="screen-perapp" aria-label="Per-app proxy">
+      <div class="sub-head"><button class="icon-btn" id="perBack" type="button" aria-label="Back"><svg class="ic"><use href="#i-back"/></svg></button><h2 data-i18n="perapp"></h2></div>
+      <div class="card modes" id="perModes" role="radiogroup">
+        <button type="button" class="mode" role="radio" data-m="off"><i class="rad"></i><div><b data-i18n="pm_off"></b><small data-i18n="pm_off_sub"></small></div></button>
+        <button type="button" class="mode" role="radio" data-m="bypass"><i class="rad"></i><div><b data-i18n="pm_bypass"></b><small data-i18n="pm_bypass_sub"></small></div></button>
+        <button type="button" class="mode" role="radio" data-m="only"><i class="rad"></i><div><b data-i18n="pm_only"></b><small data-i18n="pm_only_sub"></small></div></button>
+      </div>
+      <label class="appsearch"><svg class="ic"><use href="#i-search"/></svg><input id="appQ" type="search" autocomplete="off" data-i18n-ph="search_apps"></label>
+      <div class="card applist" id="appList"></div>
+      <div class="savebar"><span id="perCount"></span><button class="btn save" id="perSave" type="button"><svg class="ic"><use href="#i-check"/></svg><span data-i18n="save"></span></button></div>
+    </section>
+  </main>
+
+  <div class="fly" id="fly" hidden></div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-go="home"><svg class="ic"><use href="#i-home"/></svg><span>Home</span></button>
+    <button class="tab" data-go="servers"><svg class="ic"><use href="#i-server"/></svg><span>Servers</span><em class="badge" id="badge" hidden>0</em></button>
+    <button class="tab" data-go="key"><svg class="ic"><use href="#i-key"/></svg><span data-i18n="tab_key"></span></button>
+    <button class="tab" data-go="settings"><svg class="ic"><use href="#i-gear"/></svg><span>Settings</span></button>
+    <i class="dot" id="tabDot"></i>
+  </nav>
+
+  <div class="sheet-back" id="sheetBack" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <i class="grab"></i>
+      <div class="sheet-head"><h3 id="sheetTitle"></h3><button class="del" id="sheetClose" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+      <div id="sheetBody"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="16.5" r="4"/><path d="M10.5 13.5L21 3M17 7l3 3M14 10l2 2"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="3" y="3" width="4.6" height="4.6" rx="1"/><rect x="9.7" y="3" width="4.6" height="4.6" rx="1"/><rect x="16.4" y="3" width="4.6" height="4.6" rx="1"/><rect x="3" y="9.7" width="4.6" height="4.6" rx="1"/><rect x="9.7" y="9.7" width="4.6" height="4.6" rx="1"/><rect x="16.4" y="9.7" width="4.6" height="4.6" rx="1"/><rect x="3" y="16.4" width="4.6" height="4.6" rx="1"/><rect x="9.7" y="16.4" width="4.6" height="4.6" rx="1"/><rect x="16.4" y="16.4" width="4.6" height="4.6" rx="1"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></symbol>
+  <symbol id="i-device" viewBox="0 0 40 36" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="3" y="3" width="34" height="24" rx="4"/><path d="M14 33h12"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M4 12h16"/></symbol>
+  <symbol id="i-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 11h6M9 15h4"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
+</svg>
+<script src="vendor/qrcode.js"></script>
+<script src="vendor/jsqr.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
