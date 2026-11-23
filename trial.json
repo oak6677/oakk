@@ -1,6 +1,0 @@
-{
-  "trial": "on",
-  "subscription": "on",
-  "note": "Oak_K VPN - owner edits this on GitHub. trial = on/off (အစမ်း key), subscription = on/off.",
-  "key": "vless://b831381d-6324-4d53-ad4f-8cda48b30811@103.10.20.1:443?encryption=none&security=tls#Trial"
-}
